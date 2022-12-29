@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenAI Whisper Example</title>
+    <script src="https://unpkg.com/@openai/whisper@latest/dist/whisper.min.js"></script>
+  </head>
+  <body>
+    <button id="record-button">Record</button>
+    <div id="counter"></div>
+    <div id="translated-text"></div>
+
+    <script>
+      const whisper = new Whisper({
+        apiKey: 'YOUR_API_KEY_HERE'
+      });
+
+      const recordButton = document.getElementById('record-button');
+      const counterElement = document.getElementById('counter');
+      const translatedTextElement = document.getElementById('translated-text');
+
+      let isRecording = false;
+      let timer = 0;
+
+      recordButton.addEventListener('click', () => {
+        if (isRecording) {
+          // Stop recording and reset the timer
+          whisper.stop();
+          timer = 0;
+          isRecording = false;
+          recordButton.textContent = 'Record';
+        } else {
+          // Start recording
