@@ -20,13 +20,57 @@
 
       let isRecording = false;
       let timer = 0;
+      let timerInterval = null;
 
-      recordButton.addEventListener('click', () => {
+     recordButton.addEventListener('click', async () => {
         if (isRecording) {
           // Stop recording and reset the timer
           whisper.stop();
+          clearInterval(timerInterval);
           timer = 0;
           isRecording = false;
           recordButton.textContent = 'Record';
         } else {
-          // Start recording
+          // Start recording and update the timer every second
+          whisper.start();
+          isRecording = true;
+          recordButton.textContent = 'Stop';
+          timerInterval = setInterval(() => {
+            timer++;
+            counterElement.textContent = `Recording for ${timer} seconds...`;
+          }, 1000);
+        }
+      });
+      
+      whisper.on('transcription', async transcription => {
+        translatedTextElement.textContent = transcription;
+
+        // Send the transcription to the sentiment classifier
+        // and get the prediction
+        const classification = await classifySentiment(transcription);
+
+        // Send the classification to the GPT-3 model
+        // and get the generated text
+        const generatedText = await generateText(classification);
+        
+        // Update the generated text element with the generated text
+        generatedTextElement.textContent = generatedText;
+      });
+
+      async function classifySentiment(transcription) {
+        // Replace this with your own sentiment classification logic
+        return 'positive';
+      }
+
+      async function generateText(classification) {
+        // Use the GPT-3 model to generate text based on the classification
+        const response = await openai.textGeneration.create({
+          prompt: `The sentiment of the transcription is ${classification}.`,
+          model: 'davinci',
+          temperature: 0.5,
+        });
+        return response.data.choices[0].text;
+      }
+    </script>
+  </body>
+</html>
