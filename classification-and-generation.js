@@ -1,9 +1,18 @@
+      const picklejs = require('pickle-js');      
+
       async function classifySentiment(transcription) {
-        // Replace this with sentiment classification logic
-        return 'positive';
+            
+        // Load pickle file from directory in repo
+        const model = await picklejs.load('path/to/pickle/file.pkl')
+        
+        // Classify sentiment of transcription with model
+        const sentiment = model.predict(transcription);
+            
+        return sentiment;
       }
 
       async function generateText(classification) {
+            
         // Use the GPT-3 model to generate text based on the classification
         const response = await openai.textGeneration.create({
               
@@ -18,5 +27,6 @@
           model: 'text-davinci-003',
           temperature: 0.5,
         });
+            
         return response.data.choices[0].text;
       }
