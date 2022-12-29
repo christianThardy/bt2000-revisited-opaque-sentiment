@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenAI Whisper Example</title>
+    <title>Are You Ok?</title>
     <script src="https://unpkg.com/@openai/whisper@latest/dist/whisper.min.js"></script>
     <style>
       body {
@@ -10,6 +10,11 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
+      }
+      
+      #title {
+        font-family: 'Helvetica', sans-serif;
+        font-size: 24px;
       }
       
       button {
@@ -23,6 +28,7 @@
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
+        border-radius: 10px;
       }
       
       button.recording {
@@ -33,12 +39,20 @@
       #counter, #translated-text {
         font-size: 20px;
       }
+      
+      #response {
+        background-color: #f1f1f1;
+        padding: 20px;
+        pointer-events: none;
+      }
     </style>
   </head>
   <body>
+    <div id="title">Are you ok?</div>
     <button id="record-button">Record</button>
     <div id="counter"></div>
     <div id="translated-text"></div>
+    <div id="response"></div>
 
     <script>
       const whisper = new Whisper({
