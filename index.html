@@ -64,8 +64,9 @@
     <div id="response"></div>
 
     <script>
+      const apiKey = process.env.OPENAI_KEY;
       const whisper = new Whisper({
-        apiKey: 'YOUR_API_KEY_HERE'
+        apiKey: apiKey
       });
 
       const recordButton = document.getElementById('record-button');
