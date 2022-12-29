@@ -1,5 +1,5 @@
       async function classifySentiment(transcription) {
-        // Replace this with your own sentiment classification logic
+        // Replace this with sentiment classification logic
         return 'positive';
       }
 
