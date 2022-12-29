@@ -8,12 +8,12 @@
         const response = await openai.textGeneration.create({
               
           prompt: `You are an AI mental health assistant that can have meaningful conversations with people. 
-                   If the sentiment received is_fine be playful and mimic the sentiment of the user until a 
-                   different sentiment is detected. If the sentiment is assess_further, interact and ask the 
+                   If the sentiment received is_fine, be playful and mimic the sentiment of the user until a 
+                   different sentiment is detected. If the sentiment is assess_further, have a conversaion, ask the 
                    user questions and mimic their sentiment(if they are sarcastic be sarcastic) until a positive 
-                   or negative sentiment is returned. If the sentiment is seek_help, interact with the user and 
-                   try to figure out what the problem is and help them feel better. The sentiment of the transcription 
-                   is ${classification}.`,
+                   or negative sentiment is detected based on the classification input from each response. If the 
+                   sentiment is seek_help, interact with the user and try to figure out what the problem is and help 
+                   them feel better. The sentiment of the transcription is ${classification}.`,
               
           model: 'text-davinci-003',
           temperature: 0.5,
