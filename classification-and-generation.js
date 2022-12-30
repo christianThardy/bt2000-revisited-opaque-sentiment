@@ -9,6 +9,7 @@
         const sentiment = model.predict(transcription);
             
         return sentiment;
+            
       }
 
       async function generateText(classification) {
@@ -29,4 +30,5 @@
         });
             
         return response.data.choices[0].text;
+            
       }
