@@ -3,7 +3,6 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.25, maximum-scale=5">
     <title>Are You Ok?</title>
-    <script src="https://unpkg.com/@openai/whisper@latest/dist/whisper.min.js"></script>
     <style>
       body {
         display: flex;
@@ -78,11 +77,6 @@
     <div id="response"></div>
 
     <script>
-      const apiKey = process.env.OPENAI_KEY;
-      const whisper = new Whisper({
-        apiKey: apiKey
-      });
-
       const recordButton = document.getElementById('record-button');
       const counterElement = document.getElementById('counter');
       const translatedTextElement = document.getElementById('translated-text');
@@ -111,22 +105,10 @@
         }
       });
       
-      whisper.on('transcription', async transcription => {
-        translatedTextElement.textContent = transcription;
+      <script src="https://raw.githubusercontent.com/christianThardy/bt2000-revisited-opaque-sentiment/main/whisper-speech-recognition.js">
+      </script>
 
-        // Send the transcription to the sentiment classifier
-        // and get the prediction
-        const classification = await classifySentiment(transcription);
-
-        // Send the classification to the GPT-3 model
-        // and get the generated text
-        const generatedText = await generateText(classification);
-        
-        // Update the generated text element with the generated text
-        generatedTextElement.textContent = generatedText;
-      });
-
-      <script src="/path/to/classification-and-generation.js">
+      <script src="https://raw.githubusercontent.com/christianThardy/bt2000-revisited-opaque-sentiment/main/classification-and-generation.js">
     </script>
   </body>
 </html>
