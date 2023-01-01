@@ -3,14 +3,14 @@
       async function classifySentiment(transcription) {
             
         // Load vectorizer from repo directory
-        const vectorizer = await picklejs.load('https://raw.githubusercontent.com/christianThardy/bt2000-revisited-opaque-sentiment/main/models/pickle/prompt_model_vectorizer.pkl')
+        const vectorizer = await picklejs.load("https://raw.githubusercontent.com/christianThardy/bt2000-revisited-opaque-sentiment/main/models/pickle/prompt_model_vectorizer.pkl")
         
             
         // Vectorize the transcription
         const vectorizedTranscription = vectorizer.transform(transcription);
             
         // Load model from repo directory
-        const model = await picklejs.load(''https://raw.githubusercontent.com/christianThardy/bt2000-revisited-opaque-sentiment/main/models/pickle/prompt_model.pkl'')
+        const model = await picklejs.load("https://raw.githubusercontent.com/christianThardy/bt2000-revisited-opaque-sentiment/main/models/pickle/prompt_model.pkl")
         
         // Classify sentiment of transcription with model
         const sentiment = model.predict(vectorizedTranscription);
