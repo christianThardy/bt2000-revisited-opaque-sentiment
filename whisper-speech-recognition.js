@@ -1,4 +1,4 @@
-<script src="https://unpkg.com/@openai/whisper@latest/dist/whisper.min.js"></script>
+
 
     <script>
       const apiKey = process.env.OPENAI_KEY;
