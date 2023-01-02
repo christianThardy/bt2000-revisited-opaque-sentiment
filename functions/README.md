@@ -6,4 +6,4 @@ The functions directory works with Netlify which provides access to serverless f
 
 ### Text Classification & Text Generation
 
-### Automatic Speech Recognition
+### Whisper API for Automatic Speech Recognition
