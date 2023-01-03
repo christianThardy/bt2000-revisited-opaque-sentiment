@@ -1,1 +1,7 @@
 .env
+
+functions/models/pickle/prompt_model.pkl
+
+functions/models/pickle/prompt_model_vectorizer.pkl
+
+functions/text-classification-generation/classification-generation.js
