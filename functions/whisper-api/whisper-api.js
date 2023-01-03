@@ -1,12 +1,9 @@
-const express = require('express');
 const openai = require('openai');
 
-openai.apiKey = 'YOUR_API_KEY';
+openai.apiKey = process.env.OPENAI_KEY;
 
-const app = express();
-
-app.get('/whisper', async (req, res) => {
-  const { prompt } = req.query;
+exports.handler = async function(event, context) {
+  const { prompt } = event.queryStringParameters;
 
   try {
     const response = await openai.completion.create({
@@ -18,12 +15,14 @@ app.get('/whisper', async (req, res) => {
       temperature: 0.5
     });
 
-    res.send(response.choices[0].text);
+    return {
+      statusCode: 200,
+      body: response.choices[0].text
+    };
   } catch (error) {
-    res.status(500).send(error);
+    return {
+      statusCode: 500,
+      body: error
+    };
   }
-});
-
-app.listen(3000, () => {
-  console.log('API listening on port 3000');
-});
+};
