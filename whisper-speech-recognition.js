@@ -1,5 +1,3 @@
-
-
     <script>
       const apiKey = process.env.OPENAI_KEY;
       const whisper = new Whisper({
