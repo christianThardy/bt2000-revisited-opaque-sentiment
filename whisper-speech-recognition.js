@@ -4,7 +4,6 @@
         apiKey: apiKey
       });
 
-
       whisper.on('transcription', async transcription => {
         translatedTextElement.textContent = transcription;
 
